@@ -3,6 +3,7 @@ package executor_service_and_future.schedule;
 import java.util.Random;
 import java.util.concurrent.*;
 
+@SuppressWarnings("unchecked")
 public class Main {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(3);
@@ -45,13 +46,8 @@ public class Main {
 
         //cái này là chạy 1 lần và trả về kết quả do dùng callable
         //nếu dùng runnable thì cũng tương tự nhưng ko trả về kết quả
-        ScheduledFuture<String> stringScheduledFuture2 = executorService.schedule(() -> {
-            int sum = 0;
-            for (int i = 0; i < 1000; i++) {
-                sum += i;
-            }
-            return String.valueOf(sum);
-        }, 2, TimeUnit.SECONDS);
+        MyCallable myCallable = new MyCallable();
+        ScheduledFuture<String> stringScheduledFuture2 = executorService.schedule(myCallable, 2, TimeUnit.SECONDS);
         System.out.println(stringScheduledFuture2.get());
         Thread.sleep(10000);
         executorService.close();
