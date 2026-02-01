@@ -48,7 +48,7 @@ public class Main {
         //nếu dùng runnable thì cũng tương tự nhưng ko trả về kết quả
         MyCallable myCallable = new MyCallable();
         ScheduledFuture<String> stringScheduledFuture2 = executorService.schedule(myCallable, 2, TimeUnit.SECONDS);
-        System.out.println(stringScheduledFuture2.get());
+        System.out.println(stringScheduledFuture2.get()); //block thread đợi kết quả, những dòng code đằng sau sẽ đợi dòng này chạy xong mới chạy
         Thread.sleep(10000);
         executorService.close();
     }
