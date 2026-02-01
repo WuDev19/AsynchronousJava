@@ -1,5 +1,7 @@
 package executor_service_and_future.schedule;
 
+import executor_service_and_future.MyCallable;
+
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -20,7 +22,7 @@ public class Main {
 //        Thread.sleep(5000);
         stringScheduledFuture.cancel(true);
 
-        //cái này đám bảo mỗi lần chạy cách đều nhau, ko bị lệch nhịp
+        //cái này đám bảo mỗi lần chạy cách đều nhau, ko bị lệch nhịp, định kì
         //nếu task nhiều hơn period thì sẽ chờ task xong rồi mới chạy tiếp => bị delay so với lý thuyết
         /* nếu task1 nhiều hơn period thì sẽ đợi task1 hoàn thành, task2 nhanh hơn period và thời gian xong nhanh hơn so với lý thuyết
             thì sẽ đọi đến thời gian tiếp theo trong lý thuyết mới chạy tiếp
